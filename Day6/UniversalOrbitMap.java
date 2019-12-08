@@ -64,10 +64,11 @@ public class UniversalOrbitMap {
 
 
 
-
-
     public static void main(String[] args){
+        System.out.println(System.currentTimeMillis());
         System.out.println(readProgram());
+        System.out.println(System.currentTimeMillis());
         System.out.println(findSanta());
+        System.out.println(System.currentTimeMillis());
     }
 }
