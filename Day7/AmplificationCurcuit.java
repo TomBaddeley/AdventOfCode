@@ -25,7 +25,7 @@ public class AmplificationCurcuit {
 
         getPermutations("56789","");
         String bestPerm = "";
-        int maxOut = 0;
+        double maxOut = 0;
 
         for(String s: perms){
             int out = 0;//originally we feed AMP A 0. Variable stores outputs of amps that get sent as input to the next amp
