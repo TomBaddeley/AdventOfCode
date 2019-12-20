@@ -3,26 +3,27 @@ import java.util.Arrays;
 public class Amp2 {
     private int codePointer;
     private double[] code;
-    private int param;
+
     private int inputPointer = 0;
     private int inputSize = 0;
-    private int[] input = new int[10000];
+    private int[] input = new int[100000];
     private int basePointer = 0;
     private boolean terminated = false;
+    private boolean inputNeeded = false;
 
-    public Amp2(double[] code, int param) {
+    public Amp2(double[] code) {
         this.codePointer = 0;
         this.code = Arrays.copyOf(code,5000);
-        this.param = param;
     }
 
     public boolean isInputNeeded() {
-        return inputPointer >= inputSize;
+        return inputNeeded;
     }
 
     public void giveInput(int i){
         input[inputSize] = i;
         inputSize++;
+        inputNeeded = false;
     }
 
     public double getOutput() {
@@ -63,10 +64,15 @@ public class Amp2 {
                 }
                 codePointer = codePointer+4;
             } else if (opCode.equals("03")) {
-                if(inputPointer >= inputSize) return -1;
-
-                code[(int)code[codePointer + 1]] = input[inputPointer];
-                inputPointer++;
+                if(inputPointer >= inputSize) {
+                    inputNeeded = true;
+                    return -1;
+                }
+                if(par1.equals("0")) {
+                    code[(int) code[codePointer + 1]] = input[inputPointer++];
+                } else{
+                    code[(int) code[codePointer + 1] + basePointer] = input[inputPointer++];
+            }
 
                 codePointer = codePointer + 2;
             } else if (opCode.equals("04")) {

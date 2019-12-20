@@ -21,7 +21,7 @@ public class day13 {
 
     public static void main(String[] args){
         double[] code = readProgram();
-        Amp2 a = new Amp2(code,-1);
+        Amp2 a = new Amp2(code);
         double output1= 0;
         double output2= 0;
         double output3= 0;
@@ -36,11 +36,11 @@ public class day13 {
 
 
         double[] code2 = readProgram();
-        code2[0] = 1;
-        a = new Amp2(code2,0);
-        output1 = 0;
-        while(true){
+        code2[0] = 2;
+        a = new Amp2(code2);
 
+        while(true){
+            output1 = a.getOutput();
             while(a.isInputNeeded()){
                 input = Integer.compare(ballx, padx);
                 a.giveInput(input);
@@ -53,8 +53,9 @@ public class day13 {
                 map[(int)output2][(int)output1] = (int)output3;
             }
             if(output1 == -1 && output2 == 0) score = (int)output3;
-            if(output3 == 4) ballx = (int)output3;
-            if(output3 == 3) padx = (int)output3;
+            if(output3 == 3) padx = (int)output1;
+            if(output3 == 4) ballx = (int)output1;
+
         }
 
 

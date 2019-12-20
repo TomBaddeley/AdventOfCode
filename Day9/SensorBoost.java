@@ -15,7 +15,7 @@ public class SensorBoost {
 
     public static void main(String[] args){
         double[] code = readProgram();
-        Amp2 a = new Amp2(code,2);
+        Amp2 a = new Amp2(code);
         System.out.println(a.getOutput());
     }
 }

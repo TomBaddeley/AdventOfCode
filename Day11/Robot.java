@@ -21,7 +21,7 @@ public class Robot {
 
         public static void main(String[] args){
             double[] code = readProgram();
-            Amp2 robot = new Amp2(code,1);
+            Amp2 robot = new Amp2(code);
             double output1 = robot.getOutput();
             double output2 = robot.getOutput();
 
